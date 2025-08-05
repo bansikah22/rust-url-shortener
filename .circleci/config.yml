@@ -1,0 +1,30 @@
+version: 2.1
+
+executors:
+  rust:
+    docker:
+      - image: cimg/rust:1.80
+
+jobs:
+  check:
+    executor: rust
+    steps:
+      - checkout
+      - run: cargo fmt -- --check
+#      - run: cargo clippy -- -D warnings
+      - run: cargo test
+
+  build:
+    executor: rust
+    steps:
+      - checkout
+      - run: cargo build --release
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - check
+      - build:
+          requires:
+            - check

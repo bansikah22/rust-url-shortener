@@ -33,4 +33,4 @@ cargo test
 cargo fmt
 #cargo clippy -- -D warnings
 ```
-License: ![MIT](./LICENSE)
+License: [MIT](./LICENSE)
